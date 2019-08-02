@@ -18,3 +18,4 @@ end
 # studentName =doc.css("h4.student-name").text
 # doc.css("div.student-card")[0].css("h4.student-name").text
 # doc.css("div.student-card")[0].css("p.student-location").text
+# url = doc.css("div.student-card")[0].css("a").attr("href").value
