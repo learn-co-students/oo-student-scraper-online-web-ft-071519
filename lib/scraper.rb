@@ -24,18 +24,28 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
-    student_contacts [:twitter]= 
-         doc.css("div.social-icon-container")[0].css("a")[0].attr("href") if doc.css("div.social-icon-container")[0].css("a")[0] != nil
+    student_contacts = {}
+    
+    doc.css("div.social-icon-container")[0].css("a").each do |contact|
+     student_contacts [:twitter]= contact.attr("href") if contact.attr("href").include?"twitter"
+     student_contacts [:linkedin]= contact.attr("href") if contact.attr("href").include?"linkedin"
+     student_contacts [:github]= contact.attr("href") if contact.attr("href").include?"github"
+     student_contacts [:blog]= contact.attr("href") if contact.attr("href").include?"http:"    
+    
+    end
+    
+  #   student_contacts [:twitter]= 
+  #       doc.css("div.social-icon-container")[0].css("a")[0].attr("href") if doc.css("div.social-icon-container")[0].css("a")[0] != nil
 
-    student_contacts[:linkedin] = 
-    doc.css("div.social-icon-container")[0].css("a")[1].attr("href") if doc.css("div.social-icon-container")[0].css("a")[1] != nil
+  #   student_contacts[:linkedin] = 
+  #   doc.css("div.social-icon-container")[0].css("a")[1].attr("href") if doc.css("div.social-icon-container")[0].css("a")[1] != nil
 
-   student_contacts[:github] = 
-       doc.css("div.social-icon-container")[0].css("a")[2].attr("href") if doc.css("div.social-icon-container")[0].css("a")[2] != nil 
+  # student_contacts[:github] = 
+  #     doc.css("div.social-icon-container")[0].css("a")[2].attr("href") if doc.css("div.social-icon-container")[0].css("a")[2] != nil 
 
-   student_contacts[:blog] = 
-       doc.css("div.social-icon-container")[0].css("a")[3].attr("href") if doc.css("div.social-icon-container")[0].css("a")[3] != nil
-      binding.pry
+  # student_contacts[:blog] = 
+  #     doc.css("div.social-icon-container")[0].css("a")[3].attr("href") if doc.css("div.social-icon-container")[0].css("a")[3] != nil
+       
     student_contacts[:profile_quote] = 
        doc.css("div.profile-quote").text
        
