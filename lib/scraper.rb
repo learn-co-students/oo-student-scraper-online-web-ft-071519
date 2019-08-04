@@ -20,13 +20,24 @@ class Scraper
   end
 
   def self.scrape_profile_page(profile_url)
-    
+    doc = Nokogiri::HTML(open(index_url))
+    binding.pry
   end
 
 end
 
+#Scrape Index
 # Student name: doc.css(".student-card").first.css('a').css(".card-text-container").first.css('h4').text
 # => "Ryan Johnson"
 # Student location:  doc.css(".student-card").first.css('a').css(".card-text-container").css('p').text
 # => "New York, NY"
 # Student profile: doc.css(".student-card").first.css('@href').text
+#
+#
+# Scrape Profile
+# Twitter:
+# Linkedin:
+# GitHub:
+# Blog:
+# Profile Quote:
+# Bio:
